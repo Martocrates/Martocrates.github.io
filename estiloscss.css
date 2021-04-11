@@ -1,0 +1,184 @@
+ul {
+	list-style-type: none;
+	margin: 0;
+	margin-left: -60px;
+	padding: 0;
+	overflow: hidden;
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	background-color: rgb(0, 0, 0);
+}
+li {
+	float: left;
+	margin-left: 50px;
+}
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+li b {
+	display: block;
+	color: rgb(133, 124, 124);
+	text-align: center;
+	font-style: oblique;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+li a:hover {
+	color: rgba(221, 147, 113, 0.836);
+	font-style: italic;
+	text-decoration: underline;
+}
+/*
+Aqui empieza el estilo para los formularios
+*/
+*{box-sizing:border-box;}
+
+form{
+	width:900px;
+	padding:16px;
+	border-radius:10px;
+	margin:auto;
+	background-color:rgb(177, 36, 36);
+}
+
+form label{
+	width:72px;
+	font-weight:bold;
+	display:inline-block;
+}
+
+form input[type="text"],
+form input[type="email"]{
+	width:800px;
+	padding:3px 10px;
+	border:1px solid #f6f6f6;
+	border-radius:3px;
+	background-color:#f6f6f6;
+	margin:8px 0;
+	display:inline-block;
+}
+
+form input[type="submit"]{
+	width:100%;
+	padding:8px 16px;
+	margin-top:32px;
+	border:1px solid #000;
+	border-radius:5px;
+	display:block;
+	color:#fff;
+	background-color:#000;
+} 
+
+form input[type="submit"]:hover{
+	cursor:pointer;
+}
+
+textarea{
+	width:100%;
+	height:100px;
+	border:1px solid #f6f6f6;
+	border-radius:3px;
+	background-color:#f6f6f6;			
+	margin:8px 0;
+	/*resize: vertical | horizontal | none | both*/
+	resize:none;
+	display:block;
+}
+/*
+Aqui termina el estilo para los formularios
+*/
+img.izquierda {
+	width: 500px; height: 500px;
+	float: left;
+  }
+  img.derecha {
+	width: 500px; height: 500px;
+	float: right;
+  }
+  /*Estilo de los semestres*/
+  .wrapper {
+	max-width: 96000px; /* 20px smaller, to fit the paddings on the sides */
+  
+	padding-right: 175px;
+	padding-left: 200px;
+  color: rgb(190, 166, 166);
+	/* ...  */
+  }
+  .img-holder{
+	
+	 }
+
+  .blocks-holder{
+	background-color: rgba(0, 0, 0, .5);
+  }
+  /*Fin del estilo de los semestres*/
+
+ /*Inicio del estilo para los cursos*/
+
+ .page-title-holder{
+	width: 100%;
+	margin-bottom: 18px;
+	padding-bottom: 18px;
+	border-bottom: 1px #ccc dashed;
+}
+
+.page-title{
+	font-size: 40px;
+	color: #1f1f1f;
+	margin-left: 10px;
+}
+	
+.page-subtitle{
+	font-size: 26px;
+	color: #555555;
+	margin-left: 10px;
+}
+
+
+.page-title-holder > .page-title,
+.page-title-holder > .page-subtitle{
+	margin-left: 30px;
+}
+
+.page-title-holder  .link-button{
+	margin-left: 30px;
+}
+.wrapper-portfolio{
+	width: 960px;
+	overflow: hidden;
+	margin-top: 20px;
+	margin-left: 30px;
+}
+
+.wrapper-portfolio .portfolio-item{
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+
+.wrapper-portfolio .portfolio-feature{
+	float: left;
+}
+
+.wrapper-portfolio .portfolio-content{
+	float: left;
+	width: 300px;
+	margin-left: 20px;
+}
+
+.wrapper-portfolio .portfolio-content .portfolio-title{
+	font-size: 30px;
+	color: #1f1f1f;	
+}
+
+.wrapper-portfolio .portfolio-content .client-title{
+	font-size: 16px;
+	color: #555555;	
+}
+
+.wrapper-portfolio .portfolio-content .excerpt{
+	line-height: 1.5em;
+}
