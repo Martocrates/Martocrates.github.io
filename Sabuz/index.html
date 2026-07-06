@@ -6,18 +6,15 @@
 <title>Sabuz · Aviso de Privacidad</title>
 <meta name="description" content="Aviso de Privacidad de Sabuz. Todo funciona localmente en tu equipo: sin telemetría, sin nube, sin cuentas.">
 <meta name="color-scheme" content="dark light">
-<link rel="alternate" hreflang="en" href="./en.html">
-<link rel="alternate" hreflang="es" href="./index.html">
 <style>
   /* ============================================================
-     Sabuz · Aviso de Privacidad
+     Sabuz · Aviso de Privacidad / Privacy Notice
      Página autocontenida · sin dependencias externas · sin CDNs
      Tema oscuro por defecto + tema claro vía prefers-color-scheme
+     Cambio de idioma ES/EN por JS (sin cambiar de URL)
      ============================================================ */
 
-  /* --- Tokens de diseño ---------------------------------------- */
   :root {
-    /* Escala zinc + acento verde (estilo Tailwind) — TEMA OSCURO */
     --bg:           #18181b;
     --surface:      #1c1c1e;
     --surface-2:    #27272a;
@@ -43,7 +40,6 @@
                     "Liberation Mono", Menlo, monospace;
   }
 
-  /* --- TEMA CLARO (respeta preferencia del sistema) ------------ */
   @media (prefers-color-scheme: light) {
     :root {
       --bg:           #fafafa;
@@ -53,7 +49,7 @@
       --border-soft:  #e4e4e7;
       --text:         #18181b;
       --muted:        #52525b;
-      --accent:       #15803d;   /* verde más oscuro para contraste AA sobre claro */
+      --accent:       #15803d;
       --accent-weak:  rgba(22, 163, 74, 0.08);
       --accent-line:  rgba(22, 163, 74, 0.35);
       --danger:       #dc2626;
@@ -63,7 +59,6 @@
     }
   }
 
-  /* --- Reset ligero -------------------------------------------- */
   *, *::before, *::after { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
@@ -82,8 +77,8 @@
 
   img, svg { max-width: 100%; }
   ::selection { background: var(--accent-weak); color: var(--text); }
+  [hidden] { display: none !important; }
 
-  /* --- Enlaces + foco visible ---------------------------------- */
   a {
     color: var(--accent);
     text-decoration: none;
@@ -92,13 +87,13 @@
   }
   a:hover { border-bottom-color: var(--accent); }
   a:focus-visible,
+  button:focus-visible,
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
     border-radius: 3px;
   }
 
-  /* --- Layout -------------------------------------------------- */
   .wrap {
     max-width: var(--measure);
     margin: 0 auto;
@@ -106,10 +101,7 @@
   }
   @media (max-width: 480px) { .wrap { padding: 0 18px; } }
 
-  /* --- Encabezado ---------------------------------------------- */
-  header.site {
-    padding: 48px 0 8px;
-  }
+  header.site { padding: 48px 0 8px; }
   .top {
     display: flex;
     align-items: center;
@@ -118,25 +110,13 @@
     margin-bottom: 34px;
     flex-wrap: wrap;
   }
-  .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 11px;
-  }
-  .brand .mark {
-    width: 32px; height: 32px;
-    flex: 0 0 auto;
-    display: block;
-    border-radius: 8px;
-  }
+  .brand { display: inline-flex; align-items: center; gap: 11px; }
+  .brand .mark { width: 32px; height: 32px; flex: 0 0 auto; display: block; border-radius: 8px; }
   .brand .wordmark {
-    font-size: 1.18rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--text);
+    font-size: 1.18rem; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
   }
 
-  /* Selector de idioma */
+  /* Selector de idioma (botones, cambio por JS) */
   .langs {
     display: inline-flex;
     gap: 2px;
@@ -146,21 +126,22 @@
     background: var(--surface-2);
     font-size: 0.8rem;
   }
-  .langs a {
+  .langs button {
     border: 0;
+    background: transparent;
     padding: 4px 12px;
     border-radius: 999px;
     color: var(--muted);
     font-weight: 600;
     letter-spacing: 0.03em;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
   }
-  .langs a:hover { color: var(--text); }
-  .langs a[aria-current="true"] {
-    background: var(--accent);
-    color: #0a0a0a;
-  }
+  .langs button:hover { color: var(--text); }
+  .langs button[aria-current="true"] { background: var(--accent); color: #0a0a0a; }
   @media (prefers-color-scheme: light) {
-    .langs a[aria-current="true"] { color: #ffffff; }
+    .langs button[aria-current="true"] { color: #ffffff; }
   }
 
   h1 {
@@ -170,7 +151,6 @@
     font-weight: 800;
     margin: 0 0 14px;
   }
-  /* Barra de acento del hero */
   h1::after {
     content: "";
     display: block;
@@ -180,16 +160,10 @@
     background: var(--accent);
   }
 
-  .meta {
-    color: var(--muted);
-    font-size: 0.94rem;
-    line-height: 1.6;
-    margin: 20px 0 0;
-  }
+  .meta { color: var(--muted); font-size: 0.94rem; line-height: 1.6; margin: 20px 0 0; }
   .meta strong { color: var(--text); font-weight: 600; }
   .meta + .meta { margin-top: 6px; }
 
-  /* --- Callout "En resumen" ------------------------------------ */
   .callout {
     display: flex;
     gap: 16px;
@@ -200,11 +174,7 @@
     border-left: 3px solid var(--accent);
     border-radius: var(--radius);
   }
-  .callout .ic {
-    flex: 0 0 auto;
-    color: var(--accent);
-    margin-top: 2px;
-  }
+  .callout .ic { flex: 0 0 auto; color: var(--accent); margin-top: 2px; }
   .callout .body { min-width: 0; }
   .callout .kicker {
     display: block;
@@ -217,7 +187,6 @@
   }
   .callout p { margin: 0; }
 
-  /* --- Cuerpo / secciones -------------------------------------- */
   main { padding-bottom: 12px; }
 
   h2 {
@@ -232,18 +201,9 @@
     gap: 11px;
   }
   h2 .ic { color: var(--accent); flex: 0 0 auto; }
-  h2 .num {
-    color: var(--muted);
-    font-variant-numeric: tabular-nums;
-    font-weight: 600;
-  }
+  h2 .num { color: var(--muted); font-variant-numeric: tabular-nums; font-weight: 600; }
 
-  h3 {
-    font-size: 1.06rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    margin: 30px 0 10px;
-  }
+  h3 { font-size: 1.06rem; font-weight: 700; letter-spacing: -0.01em; margin: 30px 0 10px; }
 
   p { margin: 0 0 16px; }
   strong { font-weight: 600; }
@@ -254,7 +214,6 @@
   li { margin: 6px 0; padding-left: 4px; }
   li::marker { color: var(--muted); }
 
-  /* --- Bloque "Datos que NO recopilamos" (acento negativo) ----- */
   .no-collect {
     margin: 22px 0;
     padding: 20px 24px 22px;
@@ -270,30 +229,15 @@
     color: var(--danger);
     margin-bottom: 12px;
   }
-  .no-collect ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .no-collect li {
-    display: flex;
-    align-items: flex-start;
-    gap: 11px;
-    padding: 5px 0;
-    margin: 0;
-  }
-  .no-collect li .ic {
-    flex: 0 0 auto;
-    color: var(--danger);
-    margin-top: 4px;
-  }
+  .no-collect ul { list-style: none; margin: 0; padding: 0; }
+  .no-collect li { display: flex; align-items: flex-start; gap: 11px; padding: 5px 0; margin: 0; }
+  .no-collect li .ic { flex: 0 0 auto; color: var(--danger); margin-top: 4px; }
   .no-collect li .txt {
     text-decoration: line-through;
     text-decoration-color: var(--danger-line);
     text-decoration-thickness: 1px;
   }
 
-  /* --- Tabla responsive ---------------------------------------- */
   .table-scroll {
     overflow-x: auto;
     margin: 22px 0;
@@ -301,12 +245,7 @@
     border-radius: var(--radius);
     -webkit-overflow-scrolling: touch;
   }
-  table {
-    width: 100%;
-    min-width: 560px;
-    border-collapse: collapse;
-    font-size: 0.95rem;
-  }
+  table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 0.95rem; }
   thead th {
     text-align: left;
     font-weight: 600;
@@ -328,7 +267,6 @@
   tbody tr:last-child td { border-bottom: 0; }
   tbody tr:hover td { background: var(--surface); }
 
-  /* --- Bloque de código / ruta -------------------------------- */
   pre.code {
     margin: 20px 0;
     padding: 16px 18px;
@@ -351,7 +289,6 @@
     border-radius: 5px;
   }
 
-  /* --- Pie ----------------------------------------------------- */
   footer.site {
     margin-top: 56px;
     padding: 28px 0 64px;
@@ -361,236 +298,573 @@
     line-height: 1.6;
   }
 
-  /* Reduce motion */
+  /* --- Estado inicial para animaciones de entrada (anime.js) ---
+     Solo se oculta si <html> tiene la clase .anim (la añade un script
+     temprano cuando NO hay prefers-reduced-motion y JS está activo).
+     Si el JS falla, la clase no se aplica o se retira y todo es visible. */
+  html.anim header .top,
+  html.anim .lang > .wrap > h1,
+  html.anim .lang > .wrap > .meta,
+  html.anim .lang .callout,
+  html.anim .lang section,
+  html.anim .no-collect li {
+    opacity: 0;
+    will-change: opacity, transform;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; }
+    * { transition: none !important; animation: none !important; }
+    html.anim header .top,
+    html.anim .lang > .wrap > h1,
+    html.anim .lang > .wrap > .meta,
+    html.anim .lang .callout,
+    html.anim .lang section,
+    html.anim .no-collect li { opacity: 1 !important; }
   }
 </style>
+<script>
+  /* Activa el modo animación lo antes posible (evita parpadeo).
+     Se omite si el usuario prefiere menos movimiento. */
+  (function () {
+    try {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.className += ' anim';
+      }
+    } catch (e) {}
+  })();
+</script>
 </head>
 <body>
 
-  <!-- ===================== ENCABEZADO ===================== -->
+  <!-- ===================== ENCABEZADO (compartido) ===================== -->
   <header class="site">
     <div class="wrap">
-
       <div class="top">
-        <!-- Wordmark: icono escudo + nombre -->
         <div class="brand">
           <img class="mark" src="./assets/Logo%20Sabuz.svg" alt="" aria-hidden="true" width="32" height="32">
           <span class="wordmark">Sabuz</span>
         </div>
 
-        <!-- Selector de idioma -->
-        <nav class="langs" aria-label="Idioma">
-          <a href="./index.html" aria-current="true" lang="es">ES</a>
-          <a href="./en.html" lang="en">EN</a>
+        <nav class="langs" aria-label="Idioma / Language">
+          <button type="button" data-set-lang="es" aria-current="true">ES</button>
+          <button type="button" data-set-lang="en" aria-current="false">EN</button>
         </nav>
       </div>
-
-      <h1>Aviso de Privacidad</h1>
-
-      <p class="meta">Aviso de Privacidad conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP), México.</p>
-      <p class="meta"><strong>Fecha de entrada en vigor:</strong> 29 de junio de 2026 · <strong>Última actualización:</strong> 29 de junio de 2026</p>
-
     </div>
   </header>
 
-  <main>
+  <!-- =========================================================================
+       CONTENIDO · ESPAÑOL
+       ========================================================================= -->
+  <div class="lang" data-lang="es">
     <div class="wrap">
+      <h1>Aviso de Privacidad</h1>
+      <p class="meta">Aviso de Privacidad conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP), México.</p>
+      <p class="meta"><strong>Fecha de entrada en vigor:</strong> 29 de junio de 2026 · <strong>Última actualización:</strong> 29 de junio de 2026</p>
+    </div>
 
-      <!-- ===================== CALLOUT · EN RESUMEN ===================== -->
-      <aside class="callout" role="note" aria-label="Resumen">
-        <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          <path d="M9 12l2 2 4-4"/>
-        </svg>
-        <div class="body">
-          <span class="kicker">En resumen</span>
-          <p>Sabuz es una aplicación de escritorio que funciona <strong>completamente de forma local en tu equipo</strong>. No recopilamos, transmitimos, vendemos ni compartimos tus datos personales. La aplicación no se conecta a internet para enviar información, no incluye telemetría, no requiere registro ni cuenta de usuario, y no muestra publicidad.</p>
-        </div>
-      </aside>
+    <main>
+      <div class="wrap">
 
-      <!-- ===================== CUERPO · SECCIONES ===================== -->
-
-      <section>
-        <h2><span class="num">1.</span> Responsable del tratamiento</h2>
-        <ul>
-          <li><strong>Responsable:</strong> «TU NOMBRE COMPLETO» (persona física desarrolladora de la aplicación).</li>
-          <li><strong>Aplicación:</strong> Sabuz (en adelante, «la Aplicación»).</li>
-          <li><strong>Correo de contacto:</strong> <a href="mailto:alpizarcruzmartin@gmail.com">alpizarcruzmartin@gmail.com</a></li>
-          <li><strong>País:</strong> México.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2><span class="num">2.</span> Alcance de esta política</h2>
-        <p>Esta política describe cómo la Aplicación maneja la información cuando la utilizas. La Aplicación es una interfaz gráfica de escritorio para la herramienta de búsqueda de texto <em>ripgrep</em>, que permite buscar, visualizar y reemplazar texto dentro de archivos almacenados en tu propio equipo.</p>
-      </section>
-
-      <section>
-        <h2><span class="num">3.</span> Datos que NO recopilamos</h2>
-        <p>La Aplicación <strong>no recopila</strong>:</p>
-        <div class="no-collect">
-          <div class="head">
-            <svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M4.9 4.9 19.1 19.1"/>
-            </svg>
-            No recopilamos
+        <aside class="callout" role="note" aria-label="Resumen">
+          <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+          <div class="body">
+            <span class="kicker">En resumen</span>
+            <p>Sabuz es una aplicación de escritorio que funciona <strong>completamente de forma local en tu equipo</strong>. No recopilamos, transmitimos, vendemos ni compartimos tus datos personales. La aplicación no se conecta a internet para enviar información, no incluye telemetría, no requiere registro ni cuenta de usuario, y no muestra publicidad.</p>
           </div>
+        </aside>
+
+        <section>
+          <h2><span class="num">1.</span> Responsable del tratamiento</h2>
           <ul>
-            <li>
-              <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-              <span class="txt">Datos personales identificables (nombre, correo, teléfono, dirección, etc.).</span>
-            </li>
-            <li>
-              <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-              <span class="txt">Datos de cuenta o credenciales (no existe registro ni inicio de sesión).</span>
-            </li>
-            <li>
-              <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-              <span class="txt">Datos de uso, analítica, métricas o telemetría.</span>
-            </li>
-            <li>
-              <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-              <span class="txt">Tu ubicación geográfica.</span>
-            </li>
-            <li>
-              <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-              <span class="txt">El contenido de los archivos que buscas o editas (ese contenido nunca sale de tu equipo).</span>
-            </li>
-            <li>
-              <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-              <span class="txt">Identificadores publicitarios. La Aplicación no muestra publicidad.</span>
-            </li>
+            <li><strong>Responsable:</strong> «TU NOMBRE COMPLETO» (persona física desarrolladora de la aplicación).</li>
+            <li><strong>Aplicación:</strong> Sabuz (en adelante, «la Aplicación»).</li>
+            <li><strong>Correo de contacto:</strong> <a href="mailto:alpizarcruzmartin@gmail.com">alpizarcruzmartin@gmail.com</a></li>
+            <li><strong>País:</strong> México.</li>
           </ul>
-        </div>
-        <p>El desarrollador <strong>no tiene acceso</strong> a ninguna información procesada por la Aplicación, ya que esta opera únicamente en tu dispositivo.</p>
-      </section>
+        </section>
 
-      <section>
-        <h2><span class="num">4.</span> Información que la Aplicación procesa localmente</h2>
-        <p>Para cumplir su función, la Aplicación procesa cierta información <strong>únicamente dentro de tu equipo</strong>, sin transmitirla a ningún servidor ni a terceros:</p>
-        <div class="table-scroll">
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Información</th>
-                <th scope="col">Para qué se usa</th>
-                <th scope="col">Dónde queda</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Contenido de los archivos que seleccionas</td>
-                <td>Buscar coincidencias, mostrar resultados y, si lo solicitas, reemplazar texto.</td>
-                <td>En memoria durante el uso. No se almacena ni se envía a ningún sitio.</td>
-              </tr>
-              <tr>
-                <td>Rutas de carpetas y archivos</td>
-                <td>Saber dónde realizar la búsqueda.</td>
-                <td>En tu equipo (ver sección 5).</td>
-              </tr>
-              <tr>
-                <td>Perfiles de extensiones, favoritos y sesiones guardadas</td>
-                <td>Recordar tus configuraciones de búsqueda preferidas.</td>
-                <td>En tu equipo (ver sección 5).</td>
-              </tr>
-              <tr>
-                <td>Copias de seguridad (backups) de archivos modificados</td>
-                <td>Permitir revertir reemplazos de texto que realices.</td>
-                <td>En tu equipo (ver sección 5).</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p>Los archivos que decides buscar o editar pueden contener datos personales o información sensible; sin embargo, dicho contenido permanece bajo tu exclusivo control en tu dispositivo y nunca es accedido por el desarrollador ni transmitido fuera de tu equipo.</p>
-      </section>
+        <section>
+          <h2><span class="num">2.</span> Alcance de esta política</h2>
+          <p>Esta política describe cómo la Aplicación maneja la información cuando la utilizas. La Aplicación es una interfaz gráfica de escritorio para la herramienta de búsqueda de texto <em>ripgrep</em>, que permite buscar, visualizar y reemplazar texto dentro de archivos almacenados en tu propio equipo.</p>
+        </section>
 
-      <section>
-        <h2>
-          <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
-          <span class="num">5.</span> Almacenamiento local de datos
-        </h2>
-        <p>La configuración que generas (perfiles de extensiones, búsquedas favoritas, sesiones guardadas y copias de seguridad) se almacena exclusivamente en tu equipo, en la carpeta de datos del usuario:</p>
-        <pre class="code">%LOCALAPPDATA%\RipgrepDesktop\</pre>
-        <p>Estos datos permanecen en tu dispositivo hasta que tú los elimines. Puedes borrarlos en cualquier momento eliminando dicha carpeta o desinstalando la Aplicación. Al desinstalar la Aplicación a través de la tienda o del sistema, los datos de usuario asociados se eliminan conforme al mecanismo estándar de desinstalación de la plataforma.</p>
-      </section>
+        <section>
+          <h2><span class="num">3.</span> Datos que NO recopilamos</h2>
+          <p>La Aplicación <strong>no recopila</strong>:</p>
+          <div class="no-collect">
+            <div class="head">
+              <svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M4.9 4.9 19.1 19.1"/>
+              </svg>
+              No recopilamos
+            </div>
+            <ul>
+              <li>
+                <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                <span class="txt">Datos personales identificables (nombre, correo, teléfono, dirección, etc.).</span>
+              </li>
+              <li>
+                <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                <span class="txt">Datos de cuenta o credenciales (no existe registro ni inicio de sesión).</span>
+              </li>
+              <li>
+                <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                <span class="txt">Datos de uso, analítica, métricas o telemetría.</span>
+              </li>
+              <li>
+                <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                <span class="txt">Tu ubicación geográfica.</span>
+              </li>
+              <li>
+                <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                <span class="txt">El contenido de los archivos que buscas o editas (ese contenido nunca sale de tu equipo).</span>
+              </li>
+              <li>
+                <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                <span class="txt">Identificadores publicitarios. La Aplicación no muestra publicidad.</span>
+              </li>
+            </ul>
+          </div>
+          <p>El desarrollador <strong>no tiene acceso</strong> a ninguna información procesada por la Aplicación, ya que esta opera únicamente en tu dispositivo.</p>
+        </section>
 
-      <section>
-        <h2>
-          <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 2 22 22"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M2 8.8a15.9 15.9 0 0 1 4.6-2.9"/><path d="M10.7 5.1a15.9 15.9 0 0 1 11.3 3.7"/><path d="M5 12.9a10 10 0 0 1 3-1.9"/><path d="M12.5 8.1a10 10 0 0 1 6.5 3"/><path d="M12 20h.01"/></svg>
-          <span class="num">6.</span> Conexiones de red y ausencia de telemetría
-        </h2>
-        <p>La Aplicación está diseñada para funcionar <strong>sin conexión a internet</strong>. Todos sus componentes (interfaz, fuentes tipográficas, editor de código y motor de búsqueda) se incluyen localmente dentro de la Aplicación. La Aplicación no realiza llamadas de red para enviar tu información, no se comunica con servidores del desarrollador y no contiene servicios de analítica de terceros.</p>
-      </section>
+        <section>
+          <h2><span class="num">4.</span> Información que la Aplicación procesa localmente</h2>
+          <p>Para cumplir su función, la Aplicación procesa cierta información <strong>únicamente dentro de tu equipo</strong>, sin transmitirla a ningún servidor ni a terceros:</p>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Información</th>
+                  <th scope="col">Para qué se usa</th>
+                  <th scope="col">Dónde queda</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Contenido de los archivos que seleccionas</td>
+                  <td>Buscar coincidencias, mostrar resultados y, si lo solicitas, reemplazar texto.</td>
+                  <td>En memoria durante el uso. No se almacena ni se envía a ningún sitio.</td>
+                </tr>
+                <tr>
+                  <td>Rutas de carpetas y archivos</td>
+                  <td>Saber dónde realizar la búsqueda.</td>
+                  <td>En tu equipo (ver sección 5).</td>
+                </tr>
+                <tr>
+                  <td>Perfiles de extensiones, favoritos y sesiones guardadas</td>
+                  <td>Recordar tus configuraciones de búsqueda preferidas.</td>
+                  <td>En tu equipo (ver sección 5).</td>
+                </tr>
+                <tr>
+                  <td>Copias de seguridad (backups) de archivos modificados</td>
+                  <td>Permitir revertir reemplazos de texto que realices.</td>
+                  <td>En tu equipo (ver sección 5).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Los archivos que decides buscar o editar pueden contener datos personales o información sensible; sin embargo, dicho contenido permanece bajo tu exclusivo control en tu dispositivo y nunca es accedido por el desarrollador ni transmitido fuera de tu equipo.</p>
+        </section>
 
-      <section>
-        <h2><span class="num">7.</span> Componentes de terceros</h2>
-        <p>La Aplicación incorpora los siguientes componentes de terceros, integrados localmente:</p>
-        <ul>
-          <li><strong>Microsoft Edge WebView2 Runtime:</strong> componente de Microsoft que la Aplicación usa para mostrar su interfaz. Su uso por parte de la Aplicación es local; el tratamiento que Microsoft realice de su propio runtime se rige por la política de privacidad de Microsoft.</li>
-          <li><strong>ripgrep (rg.exe):</strong> motor de búsqueda de código abierto que se ejecuta localmente en tu equipo. No realiza conexiones de red.</li>
-          <li><strong>Monaco Editor</strong> y <strong>Tailwind CSS</strong> (componentes de interfaz incluidos localmente, sin conexión externa).</li>
-          <li><strong>Tipografía Inter</strong> (incluida localmente bajo licencia SIL Open Font License 1.1).</li>
-        </ul>
-      </section>
+        <section>
+          <h2>
+            <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
+            <span class="num">5.</span> Almacenamiento local de datos
+          </h2>
+          <p>La configuración que generas (perfiles de extensiones, búsquedas favoritas, sesiones guardadas y copias de seguridad) se almacena exclusivamente en tu equipo, en la carpeta de datos del usuario:</p>
+          <pre class="code">%LOCALAPPDATA%\RipgrepDesktop\</pre>
+          <p>Estos datos permanecen en tu dispositivo hasta que tú los elimines. Puedes borrarlos en cualquier momento eliminando dicha carpeta o desinstalando la Aplicación. Al desinstalar la Aplicación a través de la tienda o del sistema, los datos de usuario asociados se eliminan conforme al mecanismo estándar de desinstalación de la plataforma.</p>
+        </section>
 
-      <section>
-        <h2><span class="num">8.</span> Permisos del sistema</h2>
-        <p>Para cumplir su función, la Aplicación requiere acceso al sistema de archivos de tu equipo, con el fin de leer las carpetas y archivos que selecciones y, cuando lo solicites explícitamente, modificarlos. Este acceso se utiliza únicamente para las operaciones de búsqueda y reemplazo que tú inicias.</p>
-      </section>
+        <section>
+          <h2>
+            <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 2 22 22"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M2 8.8a15.9 15.9 0 0 1 4.6-2.9"/><path d="M10.7 5.1a15.9 15.9 0 0 1 11.3 3.7"/><path d="M5 12.9a10 10 0 0 1 3-1.9"/><path d="M12.5 8.1a10 10 0 0 1 6.5 3"/><path d="M12 20h.01"/></svg>
+            <span class="num">6.</span> Conexiones de red y ausencia de telemetría
+          </h2>
+          <p>La Aplicación está diseñada para funcionar <strong>sin conexión a internet</strong>. Todos sus componentes (interfaz, fuentes tipográficas, editor de código y motor de búsqueda) se incluyen localmente dentro de la Aplicación. La Aplicación no realiza llamadas de red para enviar tu información, no se comunica con servidores del desarrollador y no contiene servicios de analítica de terceros.</p>
+        </section>
 
-      <section>
-        <h2>
-          <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span class="num">9.</span> Seguridad
-        </h2>
-        <p>Dado que la información se procesa y almacena localmente en tu dispositivo, su seguridad depende principalmente de las medidas de protección de tu propio equipo (control de cuentas de usuario, cifrado de disco, antivirus, etc.). El desarrollador no almacena copia alguna de tus datos.</p>
-      </section>
+        <section>
+          <h2><span class="num">7.</span> Componentes de terceros</h2>
+          <p>La Aplicación incorpora los siguientes componentes de terceros, integrados localmente:</p>
+          <ul>
+            <li><strong>Microsoft Edge WebView2 Runtime:</strong> componente de Microsoft que la Aplicación usa para mostrar su interfaz. Su uso por parte de la Aplicación es local; el tratamiento que Microsoft realice de su propio runtime se rige por la política de privacidad de Microsoft.</li>
+            <li><strong>ripgrep (rg.exe):</strong> motor de búsqueda de código abierto que se ejecuta localmente en tu equipo. No realiza conexiones de red.</li>
+            <li><strong>Monaco Editor</strong> y <strong>Tailwind CSS</strong> (componentes de interfaz incluidos localmente, sin conexión externa).</li>
+            <li><strong>Tipografía Inter</strong> (incluida localmente bajo licencia SIL Open Font License 1.1).</li>
+          </ul>
+        </section>
 
-      <section>
-        <h2><span class="num">10.</span> Datos de menores de edad</h2>
-        <p>La Aplicación es una herramienta de productividad de propósito general y no está dirigida específicamente a menores de edad, ni recopila a sabiendas datos personales de menores. Al no recopilar datos personales, no se realiza tratamiento alguno de información de menores.</p>
-      </section>
+        <section>
+          <h2><span class="num">8.</span> Permisos del sistema</h2>
+          <p>Para cumplir su función, la Aplicación requiere acceso al sistema de archivos de tu equipo, con el fin de leer las carpetas y archivos que selecciones y, cuando lo solicites explícitamente, modificarlos. Este acceso se utiliza únicamente para las operaciones de búsqueda y reemplazo que tú inicias.</p>
+        </section>
 
-      <section>
-        <h2><span class="num">11.</span> Tus derechos (Derechos ARCO)</h2>
-        <p>Conforme a la LFPDPPP, tienes derecho a Acceder, Rectificar, Cancelar u Oponerte (derechos ARCO) al tratamiento de tus datos personales. En la práctica, dado que el desarrollador <strong>no recopila ni conserva</strong> ningún dato personal tuyo:</p>
-        <ul>
-          <li><strong>Acceso:</strong> todos los datos generados por la Aplicación residen en tu equipo (carpeta indicada en la sección 5) y puedes consultarlos directamente.</li>
-          <li><strong>Rectificación y Cancelación:</strong> puedes modificar o eliminar dichos datos en cualquier momento desde la propia Aplicación o borrando la carpeta de datos.</li>
-          <li><strong>Oposición:</strong> puedes dejar de usar la Aplicación y desinstalarla en cualquier momento.</li>
-        </ul>
-        <p>Si tienes dudas sobre el ejercicio de estos derechos, puedes escribir a <a href="mailto:alpizarcruzmartin@gmail.com">alpizarcruzmartin@gmail.com</a>.</p>
-      </section>
+        <section>
+          <h2>
+            <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span class="num">9.</span> Seguridad
+          </h2>
+          <p>Dado que la información se procesa y almacena localmente en tu dispositivo, su seguridad depende principalmente de las medidas de protección de tu propio equipo (control de cuentas de usuario, cifrado de disco, antivirus, etc.). El desarrollador no almacena copia alguna de tus datos.</p>
+        </section>
 
-      <section>
-        <h2><span class="num">12.</span> Cambios a esta política</h2>
-        <p>Podemos actualizar esta política para reflejar cambios en la Aplicación o en la legislación aplicable. Cualquier modificación se publicará en esta misma dirección, actualizando la fecha de «Última actualización». Te recomendamos revisarla periódicamente.</p>
-      </section>
+        <section>
+          <h2><span class="num">10.</span> Datos de menores de edad</h2>
+          <p>La Aplicación es una herramienta de productividad de propósito general y no está dirigida específicamente a menores de edad, ni recopila a sabiendas datos personales de menores. Al no recopilar datos personales, no se realiza tratamiento alguno de información de menores.</p>
+        </section>
 
-      <section>
-        <h2><span class="num">13.</span> Contacto</h2>
-        <p>Para cualquier pregunta relacionada con esta política o con la privacidad en la Aplicación, contáctanos en: <a href="mailto:alpizarcruzmartin@gmail.com">alpizarcruzmartin@gmail.com</a></p>
-      </section>
+        <section>
+          <h2><span class="num">11.</span> Tus derechos (Derechos ARCO)</h2>
+          <p>Conforme a la LFPDPPP, tienes derecho a Acceder, Rectificar, Cancelar u Oponerte (derechos ARCO) al tratamiento de tus datos personales. En la práctica, dado que el desarrollador <strong>no recopila ni conserva</strong> ningún dato personal tuyo:</p>
+          <ul>
+            <li><strong>Acceso:</strong> todos los datos generados por la Aplicación residen en tu equipo (carpeta indicada en la sección 5) y puedes consultarlos directamente.</li>
+            <li><strong>Rectificación y Cancelación:</strong> puedes modificar o eliminar dichos datos en cualquier momento desde la propia Aplicación o borrando la carpeta de datos.</li>
+            <li><strong>Oposición:</strong> puedes dejar de usar la Aplicación y desinstalarla en cualquier momento.</li>
+          </ul>
+          <p>Si tienes dudas sobre el ejercicio de estos derechos, puedes escribir a <a href="mailto:alpizarcruzmartin@gmail.com">alpizarcruzmartin@gmail.com</a>.</p>
+        </section>
 
-      <section>
-        <h2><span class="num">14.</span> Legislación aplicable</h2>
-        <p>Esta política se rige por las leyes de los Estados Unidos Mexicanos, en particular por la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) y su normativa derivada.</p>
-      </section>
+        <section>
+          <h2><span class="num">12.</span> Cambios a esta política</h2>
+          <p>Podemos actualizar esta política para reflejar cambios en la Aplicación o en la legislación aplicable. Cualquier modificación se publicará en esta misma dirección, actualizando la fecha de «Última actualización». Te recomendamos revisarla periódicamente.</p>
+        </section>
 
-    </div>
-  </main>
+        <section>
+          <h2><span class="num">13.</span> Contacto</h2>
+          <p>Para cualquier pregunta relacionada con esta política o con la privacidad en la Aplicación, contáctanos en: <a href="mailto:alpizarcruzmartin@gmail.com">alpizarcruzmartin@gmail.com</a></p>
+        </section>
 
-  <!-- ===================== PIE ===================== -->
-  <footer class="site">
+        <section>
+          <h2><span class="num">14.</span> Legislación aplicable</h2>
+          <p>Esta política se rige por las leyes de los Estados Unidos Mexicanos, en particular por la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) y su normativa derivada.</p>
+        </section>
+
+      </div>
+    </main>
+
+    <footer class="site">
+      <div class="wrap">
+        <p style="margin:0">© 2026 Sabuz. Sabuz es un proyecto independiente y no está afiliado con el proyecto ripgrep, Microsoft, ni con ningún tercero mencionado aquí.</p>
+      </div>
+    </footer>
+  </div><!-- /es -->
+
+  <!-- =========================================================================
+       CONTENIDO · ENGLISH
+       ========================================================================= -->
+  <div class="lang" data-lang="en" hidden>
     <div class="wrap">
-      <p style="margin:0">© 2026 Sabuz. Sabuz es un proyecto independiente y no está afiliado con el proyecto ripgrep, Microsoft, ni con ningún tercero mencionado aquí.</p>
+      <h1>Privacy Notice</h1>
+      <p class="meta">Privacy notice prepared in accordance with Mexico's Federal Law on the Protection of Personal Data Held by Private Parties (LFPDPPP).</p>
+      <p class="meta"><strong>Effective date:</strong> June 29, 2026 · <strong>Last updated:</strong> June 29, 2026</p>
     </div>
-  </footer>
+
+    <main>
+      <div class="wrap">
+
+        <aside class="callout" role="note" aria-label="Summary">
+          <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+          <div class="body">
+            <span class="kicker">In short</span>
+            <p>Sabuz is a desktop application that runs <strong>entirely locally on your device</strong>. We do not collect, transmit, sell, or share your personal data. The application does not connect to the internet to send information, contains no telemetry, requires no sign-up or user account, and shows no advertising.</p>
+          </div>
+        </aside>
+
+        <section>
+          <h2><span class="num">1.</span> Data controller</h2>
+          <ul>
+            <li><strong>Controller:</strong> «YOUR FULL NAME» (individual developer of the application).</li>
+            <li><strong>Application:</strong> Sabuz (the "Application").</li>
+            <li><strong>Contact email:</strong> <a href="mailto:alpizarcruzmartin@gmail.com">alpizarcruzmartin@gmail.com</a></li>
+            <li><strong>Country:</strong> Mexico.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2><span class="num">2.</span> Scope</h2>
+          <p>This policy describes how the Application handles information when you use it. The Application is a desktop graphical interface for the <em>ripgrep</em> text-search tool, allowing you to search, view, and replace text within files stored on your own device.</p>
+        </section>
+
+        <section>
+          <h2><span class="num">3.</span> Data we do NOT collect</h2>
+          <p>The Application does <strong>not</strong> collect:</p>
+          <div class="no-collect">
+            <div class="head">
+              <svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M4.9 4.9 19.1 19.1"/>
+              </svg>
+              We do not collect
+            </div>
+            <ul>
+              <li>
+                <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                <span class="txt">Personally identifiable data (name, email, phone, address, etc.).</span>
+              </li>
+              <li>
+                <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                <span class="txt">Account data or credentials (there is no registration or login).</span>
+              </li>
+              <li>
+                <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                <span class="txt">Usage data, analytics, metrics, or telemetry.</span>
+              </li>
+              <li>
+                <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                <span class="txt">Your geographic location.</span>
+              </li>
+              <li>
+                <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                <span class="txt">The content of the files you search or edit (that content never leaves your device).</span>
+              </li>
+              <li>
+                <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                <span class="txt">Advertising identifiers. The Application displays no advertising.</span>
+              </li>
+            </ul>
+          </div>
+          <p>The developer has <strong>no access</strong> to any information processed by the Application, since it operates solely on your device.</p>
+        </section>
+
+        <section>
+          <h2><span class="num">4.</span> Information the Application processes locally</h2>
+          <p>To perform its function, the Application processes certain information <strong>only on your device</strong>, without transmitting it to any server or third party:</p>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Information</th>
+                  <th scope="col">Purpose</th>
+                  <th scope="col">Where it stays</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Content of the files you select</td>
+                  <td>Find matches, display results, and replace text if you request it.</td>
+                  <td>In memory during use. Not stored or sent anywhere.</td>
+                </tr>
+                <tr>
+                  <td>Folder and file paths</td>
+                  <td>To know where to search.</td>
+                  <td>On your device (see section 5).</td>
+                </tr>
+                <tr>
+                  <td>Extension profiles, favorites, and saved sessions</td>
+                  <td>To remember your preferred search configurations.</td>
+                  <td>On your device (see section 5).</td>
+                </tr>
+                <tr>
+                  <td>Backups of modified files</td>
+                  <td>To let you revert text replacements you make.</td>
+                  <td>On your device (see section 5).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The files you choose to search or edit may contain personal or sensitive information; however, that content remains under your exclusive control on your device and is never accessed by the developer or transmitted off your device.</p>
+        </section>
+
+        <section>
+          <h2>
+            <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
+            <span class="num">5.</span> Local data storage
+          </h2>
+          <p>The configuration you create (extension profiles, favorite searches, saved sessions, and backups) is stored solely on your device, in the user data folder:</p>
+          <pre class="code">%LOCALAPPDATA%\RipgrepDesktop\</pre>
+          <p>This data stays on your device until you delete it. You can remove it at any time by deleting that folder or uninstalling the Application. When you uninstall the Application through the store or the operating system, associated user data is removed according to the platform's standard uninstall mechanism.</p>
+        </section>
+
+        <section>
+          <h2>
+            <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 2 22 22"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M2 8.8a15.9 15.9 0 0 1 4.6-2.9"/><path d="M10.7 5.1a15.9 15.9 0 0 1 11.3 3.7"/><path d="M5 12.9a10 10 0 0 1 3-1.9"/><path d="M12.5 8.1a10 10 0 0 1 6.5 3"/><path d="M12 20h.01"/></svg>
+            <span class="num">6.</span> Network connections and absence of telemetry
+          </h2>
+          <p>The Application is designed to work <strong>offline</strong>. All of its components (interface, fonts, code editor, and search engine) are bundled locally within the Application. It makes no network calls to send your information, does not communicate with the developer's servers, and contains no third-party analytics.</p>
+        </section>
+
+        <section>
+          <h2><span class="num">7.</span> Third-party components</h2>
+          <p>The Application incorporates the following third-party components, all integrated locally:</p>
+          <ul>
+            <li><strong>Microsoft Edge WebView2 Runtime:</strong> a Microsoft component the Application uses to render its interface. The Application's use of it is local; Microsoft's processing of its own runtime is governed by Microsoft's privacy policy.</li>
+            <li><strong>ripgrep (rg.exe):</strong> an open-source search engine that runs locally on your device and makes no network connections.</li>
+            <li><strong>Monaco Editor</strong> and <strong>Tailwind CSS</strong> (interface components bundled locally, with no external connection).</li>
+            <li><strong>Inter typeface</strong> (bundled locally under the SIL Open Font License 1.1).</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2><span class="num">8.</span> System permissions</h2>
+          <p>To do its job, the Application requires access to your device's file system in order to read the folders and files you select and, when you explicitly request it, modify them. This access is used solely for the search and replace operations you initiate.</p>
+        </section>
+
+        <section>
+          <h2>
+            <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span class="num">9.</span> Security
+          </h2>
+          <p>Because information is processed and stored locally on your device, its security depends primarily on the protections of your own device (user account control, disk encryption, antivirus, etc.). The developer stores no copy of your data.</p>
+        </section>
+
+        <section>
+          <h2><span class="num">10.</span> Children's data</h2>
+          <p>The Application is a general-purpose productivity tool, is not specifically directed at children, and does not knowingly collect personal data from minors. Since it collects no personal data, no processing of minors' information takes place.</p>
+        </section>
+
+        <section>
+          <h2><span class="num">11.</span> Your rights (ARCO rights)</h2>
+          <p>Under the LFPDPPP, you have the right to Access, Rectify, Cancel (delete), and Object to (ARCO rights) the processing of your personal data. In practice, because the developer <strong>does not collect or retain</strong> any of your personal data:</p>
+          <ul>
+            <li><strong>Access:</strong> all data generated by the Application resides on your device (the folder noted in section 5) and you can inspect it directly.</li>
+            <li><strong>Rectification and Cancellation:</strong> you can modify or delete that data at any time from within the Application or by deleting the data folder.</li>
+            <li><strong>Objection:</strong> you may stop using and uninstall the Application at any time.</li>
+          </ul>
+          <p>If you have questions about exercising these rights, you can write to <a href="mailto:alpizarcruzmartin@gmail.com">alpizarcruzmartin@gmail.com</a>.</p>
+        </section>
+
+        <section>
+          <h2><span class="num">12.</span> Changes to this policy</h2>
+          <p>We may update this policy to reflect changes in the Application or applicable law. Any changes will be posted at this same address, with the "Last updated" date revised accordingly. We recommend reviewing it periodically.</p>
+        </section>
+
+        <section>
+          <h2><span class="num">13.</span> Contact</h2>
+          <p>For any question regarding this policy or privacy in the Application, contact us at: <a href="mailto:alpizarcruzmartin@gmail.com">alpizarcruzmartin@gmail.com</a></p>
+        </section>
+
+        <section>
+          <h2><span class="num">14.</span> Governing law</h2>
+          <p>This policy is governed by the laws of the United Mexican States, in particular the Federal Law on the Protection of Personal Data Held by Private Parties (LFPDPPP) and its implementing regulations.</p>
+        </section>
+
+      </div>
+    </main>
+
+    <footer class="site">
+      <div class="wrap">
+        <p style="margin:0">© 2026 Sabuz. Sabuz is an independent project and is not affiliated with the ripgrep project, Microsoft, or any third party named herein.</p>
+      </div>
+    </footer>
+  </div><!-- /en -->
+
+  <script>
+    (function () {
+      var TITLES = {
+        es: "Sabuz · Aviso de Privacidad",
+        en: "Sabuz · Privacy Notice"
+      };
+      var buttons = Array.prototype.slice.call(document.querySelectorAll('.langs button'));
+      var blocks  = Array.prototype.slice.call(document.querySelectorAll('.lang'));
+
+      function setLang(lang) {
+        if (lang !== 'es' && lang !== 'en') { lang = 'es'; }
+        document.documentElement.lang = lang;
+        document.title = TITLES[lang];
+        blocks.forEach(function (el) { el.hidden = (el.getAttribute('data-lang') !== lang); });
+        buttons.forEach(function (b) {
+          b.setAttribute('aria-current', b.getAttribute('data-set-lang') === lang ? 'true' : 'false');
+        });
+        try { localStorage.setItem('sabuz-lang', lang); } catch (e) {}
+      }
+
+      var saved = null;
+      try { saved = localStorage.getItem('sabuz-lang'); } catch (e) {}
+      var initial = saved ||
+        ((navigator.language || 'es').toLowerCase().indexOf('en') === 0 ? 'en' : 'es');
+      setLang(initial);
+
+      buttons.forEach(function (b) {
+        b.addEventListener('click', function () { setLang(b.getAttribute('data-set-lang')); });
+      });
+    })();
+  </script>
+
+  <!-- Librería de animación (alojada localmente, sin CDN) -->
+  <script src="./assets/anime.min.js"></script>
+  <script>
+    (function () {
+      var html = document.documentElement;
+      var animOn = html.classList.contains('anim');
+
+      // Si anime.js no cargó o no hay modo animación: revelar todo y salir.
+      if (!animOn || typeof anime === 'undefined') {
+        html.classList.remove('anim');
+        return;
+      }
+
+      var EASE = 'easeOutCubic';
+
+      // 1) Encabezado: entra de inmediato.
+      anime({
+        targets: 'header .top',
+        opacity: [0, 1],
+        translateY: [-28, 0],
+        duration: 950,
+        easing: EASE
+      });
+
+      // 2) Resto de bloques: entran al aparecer en pantalla.
+      //    Funciona también al cambiar de idioma: los bloques ocultos
+      //    no intersecan hasta que se muestran, y entonces se animan.
+      var reveal = function (el) {
+        anime({
+          targets: el,
+          opacity: [0, 1],
+          translateY: [40, 0],
+          duration: 1000,
+          easing: EASE
+        });
+
+        // Si el bloque contiene la lista roja "no recopilamos",
+        // escalona la entrada de cada ítem.
+        var items = el.querySelectorAll ? el.querySelectorAll('.no-collect li') : null;
+        if (items && items.length) {
+          anime({
+            targets: items,
+            opacity: [0, 1],
+            translateX: [-26, 0],
+            duration: 760,
+            delay: anime.stagger(95, { start: 260 }),
+            easing: EASE
+          });
+        }
+      };
+
+      var targets = document.querySelectorAll(
+        '.lang > .wrap > h1, .lang > .wrap > .meta, .lang .callout, .lang section'
+      );
+
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              reveal(entry.target);
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+        Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+      } else {
+        // Sin IntersectionObserver: revelar todo de una vez.
+        Array.prototype.forEach.call(targets, function (el) { reveal(el); });
+      }
+    })();
+  </script>
 
 </body>
 </html>
