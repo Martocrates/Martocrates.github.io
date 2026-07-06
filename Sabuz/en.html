@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sabuz · Privacy Notice</title>
+<meta name="description" content="Sabuz Privacy Notice. Everything runs locally on your device: no telemetry, no cloud, no accounts.">
+<meta name="color-scheme" content="dark light">
+<link rel="alternate" hreflang="en" href="./en.html">
+<link rel="alternate" hreflang="es" href="./index.html">
+<style>
+  /* ============================================================
+     Sabuz · Privacy Notice
+     Self-contained page · no external dependencies · no CDNs
+     Dark theme by default + light theme via prefers-color-scheme
+     ============================================================ */
+
+  :root {
+    --bg:           #18181b;
+    --surface:      #1c1c1e;
+    --surface-2:    #27272a;
+    --border:       #3f3f46;
+    --border-soft:  #2a2a2e;
+    --text:         #e4e4e7;
+    --muted:        #a1a1aa;
+    --accent:       #4ade80;
+    --accent-weak:  rgba(74, 222, 128, 0.10);
+    --accent-line:  rgba(74, 222, 128, 0.35);
+    --danger:       #ef4444;
+    --danger-weak:  rgba(239, 68, 68, 0.09);
+    --danger-line:  rgba(239, 68, 68, 0.30);
+
+    --radius:       14px;
+    --radius-sm:    10px;
+    --shadow:       0 1px 2px rgba(0,0,0,.25), 0 8px 24px rgba(0,0,0,.18);
+
+    --measure:      760px;
+    --font-sans:    "Inter", ui-sans-serif, system-ui, -apple-system,
+                    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono:    ui-monospace, "Cascadia Code", "SF Mono", "Consolas",
+                    "Liberation Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg:           #fafafa;
+      --surface:      #ffffff;
+      --surface-2:    #f4f4f5;
+      --border:       #d4d4d8;
+      --border-soft:  #e4e4e7;
+      --text:         #18181b;
+      --muted:        #52525b;
+      --accent:       #15803d;
+      --accent-weak:  rgba(22, 163, 74, 0.08);
+      --accent-line:  rgba(22, 163, 74, 0.35);
+      --danger:       #dc2626;
+      --danger-weak:  rgba(220, 38, 38, 0.06);
+      --danger-line:  rgba(220, 38, 38, 0.28);
+      --shadow:       0 1px 2px rgba(24,24,27,.06), 0 8px 24px rgba(24,24,27,.06);
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.72;
+    letter-spacing: .002em;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  @media (max-width: 480px) { body { font-size: 16px; } }
+
+  img, svg { max-width: 100%; }
+  ::selection { background: var(--accent-weak); color: var(--text); }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-line);
+    transition: border-color .15s ease;
+  }
+  a:hover { border-bottom-color: var(--accent); }
+  a:focus-visible,
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  .wrap {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  @media (max-width: 480px) { .wrap { padding: 0 18px; } }
+
+  header.site { padding: 48px 0 8px; }
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 34px;
+    flex-wrap: wrap;
+  }
+  .brand { display: inline-flex; align-items: center; gap: 11px; }
+  .brand .mark { width: 30px; height: 30px; color: var(--accent); flex: 0 0 auto; }
+  .brand .wordmark {
+    font-size: 1.18rem; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
+  }
+
+  .langs {
+    display: inline-flex;
+    gap: 2px;
+    padding: 3px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface-2);
+    font-size: 0.8rem;
+  }
+  .langs a {
+    border: 0;
+    padding: 4px 12px;
+    border-radius: 999px;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+  .langs a:hover { color: var(--text); }
+  .langs a[aria-current="true"] { background: var(--accent); color: #0a0a0a; }
+  @media (prefers-color-scheme: light) {
+    .langs a[aria-current="true"] { color: #ffffff; }
+  }
+
+  h1 {
+    font-size: clamp(1.9rem, 5vw, 2.55rem);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    font-weight: 800;
+    margin: 0 0 14px;
+  }
+  h1::after {
+    content: "";
+    display: block;
+    width: 56px; height: 4px;
+    margin-top: 20px;
+    border-radius: 999px;
+    background: var(--accent);
+  }
+
+  .meta { color: var(--muted); font-size: 0.94rem; line-height: 1.6; margin: 20px 0 0; }
+  .meta strong { color: var(--text); font-weight: 600; }
+  .meta + .meta { margin-top: 6px; }
+
+  .callout {
+    display: flex;
+    gap: 16px;
+    margin: 40px 0 8px;
+    padding: 22px 24px;
+    background: var(--accent-weak);
+    border: 1px solid var(--accent-line);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+  }
+  .callout .ic { flex: 0 0 auto; color: var(--accent); margin-top: 2px; }
+  .callout .body { min-width: 0; }
+  .callout .kicker {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .callout p { margin: 0; }
+
+  main { padding-bottom: 12px; }
+
+  h2 {
+    font-size: 1.32rem;
+    letter-spacing: -0.015em;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 48px 0 14px;
+    padding-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+  }
+  h2 .ic { color: var(--accent); flex: 0 0 auto; }
+  h2 .num { color: var(--muted); font-variant-numeric: tabular-nums; font-weight: 600; }
+
+  h3 { font-size: 1.06rem; font-weight: 700; letter-spacing: -0.01em; margin: 30px 0 10px; }
+
+  p { margin: 0 0 16px; }
+  strong { font-weight: 600; }
+  em { color: var(--text); font-style: italic; }
+  .muted { color: var(--muted); }
+
+  ul, ol { margin: 0 0 16px; padding-left: 1.35em; }
+  li { margin: 6px 0; padding-left: 4px; }
+  li::marker { color: var(--muted); }
+
+  .no-collect {
+    margin: 22px 0;
+    padding: 20px 24px 22px;
+    background: var(--danger-weak);
+    border: 1px solid var(--danger-line);
+    border-radius: var(--radius);
+  }
+  .no-collect .head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: var(--danger);
+    margin-bottom: 12px;
+  }
+  .no-collect ul { list-style: none; margin: 0; padding: 0; }
+  .no-collect li { display: flex; align-items: flex-start; gap: 11px; padding: 5px 0; margin: 0; }
+  .no-collect li .ic { flex: 0 0 auto; color: var(--danger); margin-top: 4px; }
+  .no-collect li .txt {
+    text-decoration: line-through;
+    text-decoration-color: var(--danger-line);
+    text-decoration-thickness: 1px;
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+    margin: 22px 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    -webkit-overflow-scrolling: touch;
+  }
+  table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 0.95rem; }
+  thead th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    background: var(--surface-2);
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 14px 18px;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border-soft);
+    line-height: 1.55;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody tr:hover td { background: var(--surface); }
+
+  pre.code {
+    margin: 20px 0;
+    padding: 16px 18px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text);
+    -webkit-overflow-scrolling: touch;
+  }
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    background: var(--surface-2);
+    border: 1px solid var(--border-soft);
+    padding: 0.12em 0.4em;
+    border-radius: 5px;
+  }
+
+  footer.site {
+    margin-top: 56px;
+    padding: 28px 0 64px;
+    border-top: 1px solid var(--border-soft);
+    color: var(--muted);
+    font-size: 0.86rem;
+    line-height: 1.6;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site">
+    <div class="wrap">
+
+      <div class="top">
+        <div class="brand">
+          <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+          <span class="wordmark">Sabuz</span>
+        </div>
+
+        <nav class="langs" aria-label="Language">
+          <a href="./index.html" lang="es">ES</a>
+          <a href="./en.html" aria-current="true" lang="en">EN</a>
+        </nav>
+      </div>
+
+      <h1>Privacy Notice</h1>
+
+      <p class="meta">Privacy notice prepared in accordance with Mexico's Federal Law on the Protection of Personal Data Held by Private Parties (LFPDPPP).</p>
+      <p class="meta"><strong>Effective date:</strong> June 29, 2026 · <strong>Last updated:</strong> June 29, 2026</p>
+
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+
+      <!-- ===================== CALLOUT · IN SHORT ===================== -->
+      <aside class="callout" role="note" aria-label="Summary">
+        <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="M9 12l2 2 4-4"/>
+        </svg>
+        <div class="body">
+          <span class="kicker">In short</span>
+          <p>Sabuz is a desktop application that runs <strong>entirely locally on your device</strong>. We do not collect, transmit, sell, or share your personal data. The application does not connect to the internet to send information, contains no telemetry, requires no sign-up or user account, and shows no advertising.</p>
+        </div>
+      </aside>
+
+      <!-- ===================== SECTIONS ===================== -->
+
+      <section>
+        <h2><span class="num">1.</span> Data controller</h2>
+        <ul>
+          <li><strong>Controller:</strong> «YOUR FULL NAME» (individual developer of the application).</li>
+          <li><strong>Application:</strong> Sabuz (the "Application").</li>
+          <li><strong>Contact email:</strong> <a href="mailto:alpizarcruzmartin@gmail.com">alpizarcruzmartin@gmail.com</a></li>
+          <li><strong>Country:</strong> Mexico.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><span class="num">2.</span> Scope</h2>
+        <p>This policy describes how the Application handles information when you use it. The Application is a desktop graphical interface for the <em>ripgrep</em> text-search tool, allowing you to search, view, and replace text within files stored on your own device.</p>
+      </section>
+
+      <section>
+        <h2><span class="num">3.</span> Data we do NOT collect</h2>
+        <p>The Application does <strong>not</strong> collect:</p>
+        <div class="no-collect">
+          <div class="head">
+            <svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M4.9 4.9 19.1 19.1"/>
+            </svg>
+            We do not collect
+          </div>
+          <ul>
+            <li>
+              <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              <span class="txt">Personally identifiable data (name, email, phone, address, etc.).</span>
+            </li>
+            <li>
+              <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              <span class="txt">Account data or credentials (there is no registration or login).</span>
+            </li>
+            <li>
+              <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              <span class="txt">Usage data, analytics, metrics, or telemetry.</span>
+            </li>
+            <li>
+              <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              <span class="txt">Your geographic location.</span>
+            </li>
+            <li>
+              <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              <span class="txt">The content of the files you search or edit (that content never leaves your device).</span>
+            </li>
+            <li>
+              <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              <span class="txt">Advertising identifiers. The Application displays no advertising.</span>
+            </li>
+          </ul>
+        </div>
+        <p>The developer has <strong>no access</strong> to any information processed by the Application, since it operates solely on your device.</p>
+      </section>
+
+      <section>
+        <h2><span class="num">4.</span> Information the Application processes locally</h2>
+        <p>To perform its function, the Application processes certain information <strong>only on your device</strong>, without transmitting it to any server or third party:</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Information</th>
+                <th scope="col">Purpose</th>
+                <th scope="col">Where it stays</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Content of the files you select</td>
+                <td>Find matches, display results, and replace text if you request it.</td>
+                <td>In memory during use. Not stored or sent anywhere.</td>
+              </tr>
+              <tr>
+                <td>Folder and file paths</td>
+                <td>To know where to search.</td>
+                <td>On your device (see section 5).</td>
+              </tr>
+              <tr>
+                <td>Extension profiles, favorites, and saved sessions</td>
+                <td>To remember your preferred search configurations.</td>
+                <td>On your device (see section 5).</td>
+              </tr>
+              <tr>
+                <td>Backups of modified files</td>
+                <td>To let you revert text replacements you make.</td>
+                <td>On your device (see section 5).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The files you choose to search or edit may contain personal or sensitive information; however, that content remains under your exclusive control on your device and is never accessed by the developer or transmitted off your device.</p>
+      </section>
+
+      <section>
+        <h2>
+          <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
+          <span class="num">5.</span> Local data storage
+        </h2>
+        <p>The configuration you create (extension profiles, favorite searches, saved sessions, and backups) is stored solely on your device, in the user data folder:</p>
+        <pre class="code">%LOCALAPPDATA%\RipgrepDesktop\</pre>
+        <p>This data stays on your device until you delete it. You can remove it at any time by deleting that folder or uninstalling the Application. When you uninstall the Application through the store or the operating system, associated user data is removed according to the platform's standard uninstall mechanism.</p>
+      </section>
+
+      <section>
+        <h2>
+          <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 2 22 22"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M2 8.8a15.9 15.9 0 0 1 4.6-2.9"/><path d="M10.7 5.1a15.9 15.9 0 0 1 11.3 3.7"/><path d="M5 12.9a10 10 0 0 1 3-1.9"/><path d="M12.5 8.1a10 10 0 0 1 6.5 3"/><path d="M12 20h.01"/></svg>
+          <span class="num">6.</span> Network connections and absence of telemetry
+        </h2>
+        <p>The Application is designed to work <strong>offline</strong>. All of its components (interface, fonts, code editor, and search engine) are bundled locally within the Application. It makes no network calls to send your information, does not communicate with the developer's servers, and contains no third-party analytics.</p>
+      </section>
+
+      <section>
+        <h2><span class="num">7.</span> Third-party components</h2>
+        <p>The Application incorporates the following third-party components, all integrated locally:</p>
+        <ul>
+          <li><strong>Microsoft Edge WebView2 Runtime:</strong> a Microsoft component the Application uses to render its interface. The Application's use of it is local; Microsoft's processing of its own runtime is governed by Microsoft's privacy policy.</li>
+          <li><strong>ripgrep (rg.exe):</strong> an open-source search engine that runs locally on your device and makes no network connections.</li>
+          <li><strong>Monaco Editor</strong> and <strong>Tailwind CSS</strong> (interface components bundled locally, with no external connection).</li>
+          <li><strong>Inter typeface</strong> (bundled locally under the SIL Open Font License 1.1).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><span class="num">8.</span> System permissions</h2>
+        <p>To do its job, the Application requires access to your device's file system in order to read the folders and files you select and, when you explicitly request it, modify them. This access is used solely for the search and replace operations you initiate.</p>
+      </section>
+
+      <section>
+        <h2>
+          <svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span class="num">9.</span> Security
+        </h2>
+        <p>Because information is processed and stored locally on your device, its security depends primarily on the protections of your own device (user account control, disk encryption, antivirus, etc.). The developer stores no copy of your data.</p>
+      </section>
+
+      <section>
+        <h2><span class="num">10.</span> Children's data</h2>
+        <p>The Application is a general-purpose productivity tool, is not specifically directed at children, and does not knowingly collect personal data from minors. Since it collects no personal data, no processing of minors' information takes place.</p>
+      </section>
+
+      <section>
+        <h2><span class="num">11.</span> Your rights (ARCO rights)</h2>
+        <p>Under the LFPDPPP, you have the right to Access, Rectify, Cancel (delete), and Object to (ARCO rights) the processing of your personal data. In practice, because the developer <strong>does not collect or retain</strong> any of your personal data:</p>
+        <ul>
+          <li><strong>Access:</strong> all data generated by the Application resides on your device (the folder noted in section 5) and you can inspect it directly.</li>
+          <li><strong>Rectification and Cancellation:</strong> you can modify or delete that data at any time from within the Application or by deleting the data folder.</li>
+          <li><strong>Objection:</strong> you may stop using and uninstall the Application at any time.</li>
+        </ul>
+        <p>If you have questions about exercising these rights, you can write to <a href="mailto:alpizarcruzmartin@gmail.com">alpizarcruzmartin@gmail.com</a>.</p>
+      </section>
+
+      <section>
+        <h2><span class="num">12.</span> Changes to this policy</h2>
+        <p>We may update this policy to reflect changes in the Application or applicable law. Any changes will be posted at this same address, with the "Last updated" date revised accordingly. We recommend reviewing it periodically.</p>
+      </section>
+
+      <section>
+        <h2><span class="num">13.</span> Contact</h2>
+        <p>For any question regarding this policy or privacy in the Application, contact us at: <a href="mailto:alpizarcruzmartin@gmail.com">alpizarcruzmartin@gmail.com</a></p>
+      </section>
+
+      <section>
+        <h2><span class="num">14.</span> Governing law</h2>
+        <p>This policy is governed by the laws of the United Mexican States, in particular the Federal Law on the Protection of Personal Data Held by Private Parties (LFPDPPP) and its implementing regulations.</p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site">
+    <div class="wrap">
+      <p style="margin:0">© 2026 Sabuz. Sabuz is an independent project and is not affiliated with the ripgrep project, Microsoft, or any third party named herein.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
