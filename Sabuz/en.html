@@ -110,7 +110,7 @@
     flex-wrap: wrap;
   }
   .brand { display: inline-flex; align-items: center; gap: 11px; }
-  .brand .mark { width: 30px; height: 30px; color: var(--accent); flex: 0 0 auto; }
+  .brand .mark { width: 32px; height: 32px; flex: 0 0 auto; display: block; border-radius: 8px; }
   .brand .wordmark {
     font-size: 1.18rem; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
   }
@@ -305,11 +305,7 @@
 
       <div class="top">
         <div class="brand">
-          <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            <path d="M9 12l2 2 4-4"/>
-          </svg>
+          <img class="mark" src="./assets/Logo%20Sabuz.svg" alt="" aria-hidden="true" width="32" height="32">
           <span class="wordmark">Sabuz</span>
         </div>
 
